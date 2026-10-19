@@ -24,8 +24,26 @@ public class Main {
         for (int producto = 0; producto < productos.length; producto++) {
             for  (int turno = 0; turno < turnos.length; turno++) {
                 System.out.print("Ventas de " + productos[producto] + " en el turno " + turnos[turno] + ": ");
-                ventas[producto][turno] = SCANNER.nextDouble();
+                ventas[producto][turno] = leerVentaValida();
             }
+        }
+    }
+
+    static double leerVentaValida() {
+        while (true) {
+
+            if  (!SCANNER.hasNextDouble()) {
+                System.out.println("Error: Ingrese un valor numerico valido.");
+                SCANNER.next();
+                continue;
+            }
+
+            double venta = SCANNER.nextDouble();
+            if (venta < 0) {
+                System.out.println("Error: Ingrse un numero positivo.");
+                continue;
+            }
+            return venta;
         }
     }
 }
